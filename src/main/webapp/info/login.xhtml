@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>login</title>
+		<h:outputStylesheet name="bootstrap.css" library="webjars/bootstrap/3.3.5/css"/>
+		<h:outputStylesheet name="bootstrap.min.css" library="webjars/bootstrap/3.3.5/css"/>
+		<h:outputScript name="jquery.js" library="webjars/jquery/1.11.1"/>
+    </h:head>
+    <h:body>
+		<h:form>
+			<div class="form-group">
+				<h:outputLabel for="usernameForm">USERNAME</h:outputLabel>
+				<h:inputText value="#{loginBean.username}" styleClass="form-control" id="usernameForm"/>
+			</div>
+			<div>
+				<h:outputLabel for="passwordForm">PASSWORD</h:outputLabel>
+				<h:inputSecret value="#{loginBean.password}" styleClass="form-control" id="passwordForm"/>
+			</div>
+			<h:commandButton value="LOGIN" styleClass="btn btn-default" action="#{loginBean.login()}"/>
+		</h:form>
+
+		<h:inputText styleClass="form-control"/>
+    </h:body>
+</html>
+
