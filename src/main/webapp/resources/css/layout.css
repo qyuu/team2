@@ -1,0 +1,25 @@
+#main{
+	margin: 0 auto;
+	width: 800px;
+}
+
+#top{
+	width:800px;
+	background-color: blue;
+}
+
+#left{
+	width:250px;
+	float: left;
+}
+
+#contents{
+	width: 550px;
+	float: right;
+}
+
+#bottom{
+	clear:both;
+	width: 800px;
+	background-color: yellow;
+}

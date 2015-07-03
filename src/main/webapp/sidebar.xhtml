@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+		<ui:composition>
+			<h:form>
+				<h:dataTable value="#{sidebarBean.teamList}" var="team" styleClass="table table-condensed t1" >
+					<h:column>
+						<h:panelGrid columns="2"  columnClasses="mySidebarTable">
+						<h:commandLink value="#{team.name}" action="#{sidebarBean.editTeam(team)}">
+						</h:commandLink>
+						<h:commandButton value="チーム削除" styleClass="btn btn-default" actionListener="#{sidebarBean.deleteTeam(team)}">
+							<f:ajax execute="@this" render="@form"/>
+						</h:commandButton>
+						</h:panelGrid>
+						<f:facet name="footer">
+							<h:panelGrid columns="1">
+								<h:commandLink value="チーム登録"  action="#{sidebarBean.addTeam()}" styleClass="btn btn-link"/>
+							</h:panelGrid>
+						</f:facet>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:composition>
+    </h:body>
+</html>
+
