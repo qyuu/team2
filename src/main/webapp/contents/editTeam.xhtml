@@ -2,19 +2,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
 		<h1>#{teamEditBan.editTeam.name}</h1>
+		<h:form>
+			<h:panelGrid columns="4" styleClass="test table table-bordered">
+				<h:panelGroup>
+					勝
+				</h:panelGroup>
+				<h:panelGroup>
+					敗
+				</h:panelGroup>
+				<h:panelGroup>
+					分
+				</h:panelGroup>
+				<h:panelGroup>
+					勝率
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:inputText value="#{teamEditBan.editTeam.wins}" size="3" p:type="number" styleClass="teamEditTable">
+						<f:ajax event="blur" listener="#{teamEditBan.saveTeam()}"/>
+					</h:inputText>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:inputText value="#{teamEditBan.editTeam.losses}" size="3" p:type="number" styleClass="teamEditTable">
+						<f:ajax event="blur" listener="#{teamEditBan.saveTeam()}"/>
+					</h:inputText>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:inputText value="#{teamEditBan.editTeam.drows}" size="3" p:type="number"  styleClass="teamEditTable">
+						<f:ajax event="blur" listener="#{teamEditBan.saveTeam()}"/>
+					</h:inputText>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:outputText value="#{teamEditBan.calWP()}"/>
+				</h:panelGroup>
+			</h:panelGrid>
+		</h:form>
 		<h:form prependId="false">
-			<h:dataTable value="#{teamEditBan.editTeam.members}" var="member" styleClass="table" id="memberTable" >
+			<h:dataTable value="#{teamEditBan.editTeam.members}" var="member" styleClass="table" id="memberTable">
 
 				<h:column>
 					<h:outputText value="#{member.number}"/>
 					<f:facet name="footer">
-						<h:inputText value="#{teamEditBan.number}" size="3" class="form-control"/>
+						<h:inputText value="#{teamEditBan.number}" size="3" class="form-control"  p:type="number"/>
 					</f:facet>
 				</h:column>
 				<h:column>

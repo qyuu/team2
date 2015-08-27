@@ -6,6 +6,7 @@
 package javaee.team2.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javaee.team2.ejb.MemberFacade;
 import javaee.team2.ejb.TeamFacade;
 import javaee.team2.entity.Member;
@@ -20,6 +21,8 @@ import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -39,6 +42,10 @@ public class TeamEditBan implements Serializable {
 	@Pattern(regexp="^[0-9]{1,3}")
 	private String number;
 
+	@Getter @Setter
+	private Integer wins;
+	@Getter @Setter
+	private Integer losses;
 	@Inject
 	private TeamFacade teamFacade;
 	@Inject
@@ -48,7 +55,7 @@ public class TeamEditBan implements Serializable {
 	public void init() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		key = (Integer) flash.get("editTeam");
-		System.out.println("key--------------------------------------------------------------------------------" + key);
+		//System.out.println("key--------------------------------------------------------------------------------" + key);
 		if(key == null) return;
 		editTeam = teamFacade.find(key);
 	}
@@ -70,7 +77,6 @@ public class TeamEditBan implements Serializable {
 	}
 
 	public TeamEditBan() {
-
 	}
 
 	public void deleteMember(Member deleteMember) {
@@ -81,6 +87,24 @@ public class TeamEditBan implements Serializable {
 		memberFacade.remove(deleteMember);
 		
 		//editTeam = teamFacade.find(key);
+	}
+	
+	public void saveTeam(){
+		System.out.println("save TEam" + wins + " " +  editTeam.getWins());
+		teamFacade.edit(editTeam);
+	}
+	
+	public BigDecimal calWP(){
+		
+		Integer games = (this.getEditTeam().getWins() + this.getEditTeam().getLosses() + this.getEditTeam().getDrows());
+		
+		if(games == 0){
+			return new BigDecimal(0).setScale(3);
+		}
+		Double d =	(double)this.editTeam.getWins() / (this.getEditTeam().getWins() + this.getEditTeam().getLosses() + this.getEditTeam().getDrows());
+		//System.out.println(" ------------------" + d);
+		BigDecimal bd = new BigDecimal(d);
+		return bd.setScale(3, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public void formClear(){

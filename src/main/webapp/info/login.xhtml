@@ -7,21 +7,22 @@
 		<h:outputStylesheet name="bootstrap.css" library="webjars/bootstrap/3.3.5/css"/>
 		<h:outputStylesheet name="bootstrap.min.css" library="webjars/bootstrap/3.3.5/css"/>
 		<h:outputScript name="jquery.js" library="webjars/jquery/1.11.1"/>
+		<h:outputStylesheet name="layout.css" library="css"/>
     </h:head>
     <h:body>
-		<h:form>
-			<div class="form-group">
-				<h:outputLabel for="usernameForm">USERNAME</h:outputLabel>
-				<h:inputText value="#{loginBean.username}" styleClass="form-control" id="usernameForm"/>
-			</div>
-			<div>
-				<h:outputLabel for="passwordForm">PASSWORD</h:outputLabel>
-				<h:inputSecret value="#{loginBean.password}" styleClass="form-control" id="passwordForm"/>
-			</div>
-			<h:commandButton value="LOGIN" styleClass="btn btn-default" action="#{loginBean.login()}"/>
-		</h:form>
-
-		<h:inputText styleClass="form-control"/>
+		<div id="login">
+			<h:form>
+				<div class="form-group">
+					<h:outputLabel for="usernameForm">USERNAME</h:outputLabel>
+					<h:inputText value="#{loginBean.username}" styleClass="form-control" id="usernameForm"/>
+				</div>
+				<div>
+					<h:outputLabel for="passwordForm">PASSWORD</h:outputLabel>
+					<h:inputSecret value="#{loginBean.password}" styleClass="form-control" id="passwordForm"/>
+				</div>
+				<h:commandButton value="LOGIN" styleClass="btn btn-default" action="#{loginBean.login()}"/>
+			</h:form>
+		</div>
     </h:body>
 </html>
 

@@ -22,25 +22,20 @@
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     <security-constraint>
-        <display-name>制約1</display-name>
+        <display-name>テスト1</display-name>
         <web-resource-collection>
-            <web-resource-name>login</web-resource-name>
-            <description>login test</description>
-            <url-pattern>/faces/index.xhtml</url-pattern>
-			<url-pattern>/faces/index.html</url-pattern>
-			<url-pattern>/faces/contents/*</url-pattern>
-			<url-pattern>/faces/addteam.xhtml</url-pattern>
-			<url-pattern>/faces/teammbember.xhtml</url-pattern>
+            <web-resource-name>test</web-resource-name>
+            <description>admin test</description>
+            <url-pattern>/faces/test/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <description>ログイン後に利用できるロール</description>
+            <description>test ロール</description>
             <role-name>admin</role-name>
-            <role-name>user</role-name>
         </auth-constraint>
         <user-data-constraint>
-            <description>HTTPSに接続する場合はCONFIDENTIALに変更する</description>
+            <description/>
             <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
     </security-constraint>

@@ -34,6 +34,9 @@ public class AddTeamBean implements Serializable{
 	public String addTeam(){
 		Team newTeam = new Team();
 		newTeam.setName(name);
+		newTeam.setWins(0);
+		newTeam.setDrows(0);
+		newTeam.setLosses(0);
 //		List<Member> memberList = new ArrayList<>();
 		teamFacade.create(newTeam);
 		

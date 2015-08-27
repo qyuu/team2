@@ -16,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -30,6 +32,13 @@ public class Team implements Serializable{
 	
 	private String name;
 	
+	@Getter @Setter
+	private Integer wins;
+	@Getter @Setter
+	private Integer losses;
+	@Getter @Setter
+	private Integer drows;
+
 	@OneToMany(mappedBy = "belong", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Member> members;
 	
@@ -37,6 +46,9 @@ public class Team implements Serializable{
 	public Team(String name, List<Member> members){
 		this.name = name;
 		this.members = members;
+		this.wins = 0;
+		this.losses = 0;
+		this.drows = 0;
 	}
 
 	public Integer getId() {

@@ -1,18 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
+	#{teamBean.test}
     <h:body>
-		<h:form>
-			<h:dataTable value="#{teamBean.teamList}" var="team" styleClass="table">
-				<h:column>
-					<h:commandLink action="#{teamBean.editTeam(team)}" value="#{team.name}"/>
-				</h:column>
-			</h:dataTable>
-		</h:form>
-    </h:body>
+		<div id="team-table">
+			<h:form>
+				<h:dataTable value="#{teamBean.teamList}" var="team" styleClass="table">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="TEAM"/>
+						</f:facet>
+						<h:commandLink action="#{teamBean.editTeam(team)}" value="#{team.name}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="GAMES"/>
+						</f:facet>
+						<h:outputText value="#{team.wins + team.losses + team.drows}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="WINS"/>
+						</f:facet>
+						<h:outputText value="#{team.wins}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="LOSSES"/>
+						</f:facet>
+						<h:outputText value="#{team.losses}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="DROWS"/>
+						</f:facet>
+						<h:outputText value="#{team.drows}"/>
+					</h:column>
+					<h:column>
+						#{teamBean.GB(team)}
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</h:body>
 </html>
 
